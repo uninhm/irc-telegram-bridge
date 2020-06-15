@@ -1,6 +1,6 @@
 import irc, strutils
 var client = newIrc("irc.twitch.tv", nick="TestBotVicfred",
-                 joinChans = @["#vicfred"], serverPass = readFile("secret.ket"))
+                 joinChans = @["#vicfred"], serverPass = readFile("secret.key"))
 client.connect()
 while true:
   var event: IrcEvent
