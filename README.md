@@ -1,23 +1,20 @@
 # irc-telegram-bridge
 
-Bridge bot between irc, telegram and discord.
+Bridge bot between IRC, and Telegram.
 
-## Requirements
-- nim
+## Requirements if you want to compile it
+- [nim](https://nim-lang.org)
 - nim irc         `nimble install irc`
 - nim telebot     `nimble install telebot`
 
-## Installation instructions
+## Compilation
 
-Set the constants in first lines of src/bot_irc.nim file.
-
-compile with -d:ssl and -d:release
+Compile with `-d:ssl` and `-d:release`
 
 `nim c -d:ssl -d:release src/bot_irc.nim`
 
+## Usage instructions
 
-populate telegram.token and irc.pass files
+Rename the `example_config.ini` file to `config.ini` and set your configs.
 
-copy the binary and access files into the same directory
-
-`scp telegram.twitch twitch.token src/bot_irc host:`
+Run the binary (Binary and config file must be in the same directory)
