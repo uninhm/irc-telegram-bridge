@@ -4,8 +4,13 @@ import irc, strutils, telebot, strformat, asyncdispatch, options, parsecfg
 
 let config         = loadConfig("config.ini")
 
-var TELEGRAM_TOKEN {.threadvar.}, IRC {.threadvar.}, IRC_NICK {.threadvar.}, IRC_CHANNEL {.threadvar.}, IRC_PASS {.threadvar.}: string
-var TG_GROUP_ID {.threadvar.}: int
+var
+  TELEGRAM_TOKEN {.threadvar.}: string
+  IRC            {.threadvar.}: string
+  IRC_NICK       {.threadvar.}: string
+  IRC_CHANNEL    {.threadvar.}: string
+  IRC_PASS       {.threadvar.}: string
+  TG_GROUP_ID    {.threadvar.}: int
 
 TG_GROUP_ID    = config.getSectionValue("Telegram", "group_id").parseInt
 TELEGRAM_TOKEN = config.getSectionValue("Telegram", "token")
