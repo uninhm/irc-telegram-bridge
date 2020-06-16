@@ -1,5 +1,5 @@
 *
 
 !src/
-
+!example_config.ini
 !*.nim
