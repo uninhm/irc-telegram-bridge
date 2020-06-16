@@ -9,7 +9,7 @@ Bridge bot between irc, telegram and discord.
 
 ## Installation instructions
 
-Set the constants in first lines of src/irc_bot.nim file.
+Set the constants in first lines of src/bot_irc.nim file.
 
 compile with -d:ssl and -d:release
 
