@@ -1,4 +1,4 @@
-# vicfred-nim-irc-bot
+# irc-telegram-bridge
 
 Bridge bot between irc, telegram and discord.
 
