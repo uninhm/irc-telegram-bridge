@@ -18,6 +18,6 @@ compile with -d:ssl and -d:release
 
 populate telegram.token and irc.pass files
 
-copy the binary and access files
+copy the binary and access files into the same directory
 
 `scp telegram.twitch twitch.token src/bot_irc host:`
