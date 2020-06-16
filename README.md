@@ -2,12 +2,14 @@
 
 Bridge bot between irc, telegram and discord.
 
-# Requirements
+## Requirements
 - nim
 - nim irc         `nimble install irc`
 - nim telebot     `nimble install telebot`
 
-# Installation instructions
+## Installation instructions
+
+Set the constants in first lines of src/irc_bot.nim file.
 
 compile with -d:ssl and -d:release
 
