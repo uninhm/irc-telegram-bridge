@@ -1,16 +1,23 @@
-# ------ Constants ------
+import irc, strutils, telebot, strformat, asyncdispatch, options, parsecfg
 
-const TG_GROUP_ID = -1001452904118
-const IRC = "irc.twitch.tv"
-const IRC_NICK = "NICK" # Doesn't work on twitch but must not be empty
-const IRC_CHANNEL = "#vicfred"
+# ------ Config ------
+
+let config         = loadConfig("config.ini")
+
+var TELEGRAM_TOKEN {.threadvar.}, IRC {.threadvar.}, IRC_NICK {.threadvar.}, IRC_CHANNEL {.threadvar.}, IRC_PASS {.threadvar.}: string
+var TG_GROUP_ID {.threadvar.}: int
+
+TG_GROUP_ID    = config.getSectionValue("Telegram", "group_id").parseInt
+TELEGRAM_TOKEN = config.getSectionValue("Telegram", "token")
+
+IRC            = config.getSectionValue("IRC", "irc")
+IRC_NICK       = config.getSectionValue("IRC", "nick")
+IRC_CHANNEL    = config.getSectionValue("IRC", "channel")
+IRC_PASS       = config.getSectionValue("IRC", "pass")
 
 
-# ------ Only edit if you know that you do ------
+# ------ Code ------
 
-import irc, strutils, telebot, strformat, asyncdispatch, options
-
-let TELEGRAM_TOKEN = readFile("telegram.token").strip
 var bot {.threadvar.}: TeleBot
 bot = newTeleBot(TELEGRAM_TOKEN)
 
@@ -37,7 +44,7 @@ proc onIrcEvent(client: AsyncIrc, event: IrcEvent) {.async.} =
 var client {.threadvar.}: AsyncIrc
 client = newAsyncIrc(IRC, nick = IRC_NICK,
                       joinChans = @[IRC_CHANNEL],
-                      serverPass = readFile("irc.pass"),
+                      serverPass = IRC_PASS,
                       callback = onIrcEvent)
 
 proc updateHandler(b: Telebot, u: Update): Future[bool] {.async.} =
