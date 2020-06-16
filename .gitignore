@@ -1,5 +1,8 @@
 *
 
 !src/
+
 !example_config.ini
+!src/bot_irc
+
 !*.nim
