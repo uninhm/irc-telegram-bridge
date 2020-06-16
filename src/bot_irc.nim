@@ -29,7 +29,7 @@ proc onIrcEvent(client: AsyncIrc, event: IrcEvent) {.async.} =
       echo text
 
 var client {.threadvar.}: AsyncIrc
-client = newAsyncIrc("irc.twitch.tv", nick="TestBotVicfred",
+client = newAsyncIrc("irc.twitch.tv", nick="nimbridgebot",
                       joinChans = @["#vicfred"],
                       serverPass = readFile("twitch.token"),
                       callback = onIrcEvent)
