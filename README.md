@@ -12,4 +12,8 @@ compile with -d:ssl and -d:release
 `nim c -d:ssl -d:release src/bot_irc.nim`
 
 
-populate .token files
+populate telegram.token and twitch.token files
+
+copy the binary and .token files
+
+`scp telegram.twitch twitch.token src/bot_irc host:`
