@@ -31,8 +31,8 @@ proc onIrcEvent(client: AsyncIrc, event: IrcEvent) {.async.} =
       if msg == "!users":
         await client.privmsg(event.origin, "Users: " &
             client.getUserList(event.origin).join("A-A"))
-      let text = fmt"{event.nick}: {msg}"
-      discard await bot.sendMessage(TG_GROUP_ID, text)
+      let text = fmt"*{event.nick}*: {msg}"
+      discard await bot.sendMessage(TG_GROUP_ID, text, parseMode = "markdown")
 
 var client {.threadvar.}: AsyncIrc
 client = newAsyncIrc(IRC, nick = IRC_NICK,
@@ -45,7 +45,8 @@ proc updateHandler(b: Telebot, u: Update): Future[bool] {.async.} =
     return true
   var m = u.message.get
   if m.text and m.chat.id == TG_GROUP_ID:
-    await client.privmsg(IRC_CHANNEL, fmt"{m.fromUser.get.firstName}: {m.text.get}")
+    await client.privmsg(IRC_CHANNEL,
+          fmt"{m.fromUser.get.firstName}: {m.text.get}")
 
 
 bot.onUpdate(updateHandler)
