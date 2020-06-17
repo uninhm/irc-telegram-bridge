@@ -2,23 +2,25 @@ import irc, strutils, telebot, strformat, asyncdispatch, options, parsecfg
 
 # ------ Config ------
 
-let config         = loadConfig("config.ini")
+let config = loadConfig("config.ini")
 
 var
-  TELEGRAM_TOKEN {.threadvar.}: string
-  IRC            {.threadvar.}: string
-  IRC_NICK       {.threadvar.}: string
-  IRC_CHANNEL    {.threadvar.}: string
-  IRC_PASS       {.threadvar.}: string
-  TG_GROUP_ID    {.threadvar.}: int
+  TELEGRAM_TOKEN: string
+  IRC           : string
+  IRC_NICK      : string
+  IRC_PASS      : string
+  IRC_CHANNEL {.threadvar.}: string
+  TG_GROUP_ID {.threadvar.}: int
 
-TG_GROUP_ID    = config.getSectionValue("Telegram", "group_id").parseInt
-TELEGRAM_TOKEN = config.getSectionValue("Telegram", "token")
 
-IRC            = config.getSectionValue("IRC", "irc")
-IRC_NICK       = config.getSectionValue("IRC", "nick")
-IRC_CHANNEL    = config.getSectionValue("IRC", "channel")
-IRC_PASS       = config.getSectionValue("IRC", "pass")
+# Puro strip, mejor prevenir que lamentar
+TG_GROUP_ID    = config.getSectionValue("Telegram", "group_id").strip.parseInt
+TELEGRAM_TOKEN = config.getSectionValue("Telegram", "token").strip
+
+IRC            = config.getSectionValue("IRC", "irc").strip
+IRC_NICK       = config.getSectionValue("IRC", "nick").strip
+IRC_CHANNEL    = config.getSectionValue("IRC", "channel").strip
+IRC_PASS       = config.getSectionValue("IRC", "pass").strip
 
 
 # ------ Code ------
@@ -57,5 +59,5 @@ proc updateHandler(b: Telebot, u: Update): Future[bool] {.async.} =
 bot.onUpdate(updateHandler)
 
 asyncCheck client.run()
-discard bot.pollAsync()
+discard bot.pollAsync(timeout=3000)
 runForever()
