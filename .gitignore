@@ -1,7 +1,6 @@
 *
 
-!src/bot_irc.nim
+!src/
 !example_config.ini
-!./bot_irc
 
 !*.nim
