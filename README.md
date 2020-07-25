@@ -12,7 +12,9 @@ Bridge bot between IRC, and Telegram.
 Compile with `-d:ssl` and `-d:release`
 
 `nim c -d:ssl -d:release src/bot_irc.nim`
+
 that uses gcc by default, if you want to use clang:
+
 `nim c --cc:clang -d:ssl -d:release src/bot_irc.nim`
 
 ## Usage instructions
